@@ -275,6 +275,10 @@ public class Sorts {
     public static <T> void eventSort(T[] l, List<SortEvent<T>> events){
         for(int i = 0; i < events.size(); i++){
             events.get(i).apply(l);
+            for(int j = 0; j < l.length; j++){
+                System.out.print(l[j] + " ");
+            }
+            System.out.print("\n");
         }
     }
     

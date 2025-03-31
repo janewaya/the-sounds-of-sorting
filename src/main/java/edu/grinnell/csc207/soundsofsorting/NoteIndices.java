@@ -1,16 +1,23 @@
 package edu.grinnell.csc207.soundsofsorting;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * A collection of indices into a Scale object.
  * These indices are the subject of the various sorting algorithms
  * in the program.
  */
 public class NoteIndices {
+    Integer[] arr;
+    Boolean[] highlights;
     /**
      * @param n the size of the scale object that these indices map into
      */
     public NoteIndices(int n) {
-        // TODO: fill me in!
+        Integer[] arr = new Integer[n];
+        Boolean[] highlights = new Boolean[n];
     }
     
     /**
@@ -20,13 +27,17 @@ public class NoteIndices {
      * @param n the size of the scale object that these indices map into
      */
     public void initializeAndShuffle(int n) {
-        // TODO: fill me in!
+        List<Integer> lst = new ArrayList<Integer>();
+        for(int i = 0; i < n; i++){
+            lst.add(i);
+        }
+        Collections.shuffle(lst);
+        arr = lst.toArray(arr);
     }
     
     /** @return the indices of this NoteIndices object */
     public Integer[] getNotes() { 
-        // TODO: fill me in!
-        return null;
+        return this.arr;
     }
     
     /**
@@ -34,7 +45,7 @@ public class NoteIndices {
      * @param index the index to highlight
      */
     public void highlightNote(int index) {
-        // TODO: fill me in
+        highlights[index] = true;
     }
     
     /**
@@ -42,12 +53,13 @@ public class NoteIndices {
      * @return true if the given index is highlighted
      */
     public boolean isHighlighted(int index) {
-        // TODO: fill me in
-        return false;
+        return highlights[index];
     }
     
     /** Clears all highlighted indices from this collection */
     public void clearAllHighlighted() {
-        // TODO: fill me in
+        for(int i = 0; i < highlights.length; i++){
+            highlights[i] = false;
+        }
     }
 }

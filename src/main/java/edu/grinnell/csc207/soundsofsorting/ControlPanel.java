@@ -1,5 +1,6 @@
 package edu.grinnell.csc207.soundsofsorting;
 
+import edu.grinnell.csc207.soundsofsorting.sortevents.CompareEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -12,6 +13,13 @@ import javax.swing.JPanel;
 
 import edu.grinnell.csc207.soundsofsorting.sortevents.SortEvent;
 import edu.grinnell.csc207.soundsofsorting.sorts.Sorts;
+import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.bubbleSort;
+import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.insertionSort;
+import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.mergeSort;
+import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.quickSort;
+import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.selectionSort;
+import java.awt.Graphics;
+import java.util.ArrayList;
 
 /**
  * The Control Panel houses the GUI for interacting with the Sounds of
@@ -134,8 +142,30 @@ public class ControlPanel extends JPanel {
                     return;
                 }
                 isSorting = true;
+                List<SortEvent<Integer>> lst = new ArrayList<SortEvent<Integer>>();
+                List<Integer> lsti;
+                String selectedSort = sorts.getItemAt(0);
+
+                if(selectedSort.equals("Selection")){
+                    lst = selectionSort(notes.getNotes());
+                } else if(selectedSort.equals("Insertion")){
+                    lst = insertionSort(notes.getNotes());
+                } else if(selectedSort.equals("Bubble")){
+                    lst = bubbleSort(notes.getNotes());
+                } else if(selectedSort.equals("Merge")){
+                    lst = mergeSort(notes.getNotes());
+                } else if(selectedSort.equals("Quick")){
+                    lst = quickSort(notes.getNotes());
+                }
+                for(int i = 0; i < lst.size(); i++){
+                    lsti = lst.get(i).getAffectedIndices();
+                    CompareEvent temp = new CompareEvent(lsti.get(0), lsti.get(1));
+                    if(lst.get(i).equals(temp)){
+                        lst.add(lst.get(i));
+                        lst.remove(i);
+                    }
+                }
                 
-                // TODO: fill me in!
                 // 1. Create the sorting events list
                 // 2. Add in the compare events to the end of the list
                 List<SortEvent<Integer>> events = new java.util.LinkedList<>();
@@ -153,7 +183,22 @@ public class ControlPanel extends JPanel {
                     public void run() {
                         if (index < events.size()) {
                             SortEvent<Integer> e = events.get(index++);
-                            // TODO: fill me in!
+                            List<SortEvent<Integer>> lst = new ArrayList<SortEvent<Integer>>();
+                List<Integer> lsti;
+                String selectedSort = sorts.getItemAt(1);
+
+                if(selectedSort.equals("Selection")){
+                    lst = selectionSort(notes.getNotes());
+                } else if(selectedSort.equals("Insertion")){
+                    lst = insertionSort(notes.getNotes());
+                } else if(selectedSort.equals("Bubble")){
+                    lst = bubbleSort(notes.getNotes());
+                } else if(selectedSort.equals("Merge")){
+                    lst = mergeSort(notes.getNotes());
+                } else if(selectedSort.equals("Quick")){
+                    lst = quickSort(notes.getNotes());
+                }
+                            
                             // 1. Apply the next sort event.
                             // 3. Play the corresponding notes denoted by the
                             //    affected indices logged in the event.

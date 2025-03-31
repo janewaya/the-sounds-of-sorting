@@ -1,8 +1,12 @@
 # CSC 207: The Sounds of Sorting
 
-Author: _(TODO: insert your name here!)_
+Author: Alex Janeway
 
 ## Resources
 
-*   _(TODO: list your resources here!)_
-*   ...
+*   NetBeans + Java 17
+*   TTAP: Data Structures - Lab Manual
+    (The Sounds of Sorting)
+    https://osera.cs.grinnell.edu/ttap/data-structures-labs/the-sounds-of-sorting.html
+*   Recieved help from Tim, a CSC mentor, on how
+    to make the test run for eventSort

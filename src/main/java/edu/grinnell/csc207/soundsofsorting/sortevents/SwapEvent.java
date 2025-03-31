@@ -22,9 +22,13 @@ public class SwapEvent<T> implements SortEvent<T> {
      */
     @Override
     public void apply(T[] arr){
+        System.out.println("Swapping\n" + this.firstindex + "\n" + this.secondindex);
         T temp = arr[this.firstindex];
         arr[this.firstindex] = arr[this.secondindex];
         arr[this.secondindex] = temp;
+        for(int j = 0; j < arr.length; j++){
+                System.out.print(arr[j] + " ");
+            }
     }
     
     public List<Integer> getAffectedIndices(){
