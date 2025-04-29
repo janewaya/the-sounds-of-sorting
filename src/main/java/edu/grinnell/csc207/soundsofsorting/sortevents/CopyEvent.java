@@ -8,12 +8,12 @@ import java.util.List;
  */
 public class CopyEvent<T> implements SortEvent<T>{
     
-    T value;
-    int destination;
+    private T value;
+    private int destination;
     
-    public CopyEvent(T value,int destination){
-        value = this.value;
-        destination = this.destination;
+    public CopyEvent(T value, int destination){
+        this.value = value;
+        this.destination = destination;
     }
     
     @Override

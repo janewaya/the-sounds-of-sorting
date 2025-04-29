@@ -9,12 +9,12 @@ import java.util.List;
  */
 public class CompareEvent<T> implements SortEvent<T>{
     
-    int firstindex;
-    int secondindex;
+    private int firstindex;
+    private int secondindex;
     
-    public CompareEvent(int firstindex,int secondindex){
-        firstindex = this.firstindex;
-        secondindex = this.secondindex;
+    public CompareEvent(int firstindex, int secondindex){
+        this.firstindex = firstindex;
+        this.secondindex = secondindex;
     }
     
     @Override

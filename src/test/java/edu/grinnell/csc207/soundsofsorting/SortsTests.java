@@ -158,6 +158,7 @@ public class SortsTests {
         testSortZero(Sorts::combSort);
     }
     
+
     public void testSortEvent(Function<Integer[],  List<SortEvent<Integer>>> func1, BiConsumer<Integer[], List<SortEvent<Integer>>> func2) {
         List<SortEvent<Integer>> lst = new ArrayList<SortEvent<Integer>>();
         Integer[] arr = makeTestArray();
@@ -171,5 +172,30 @@ public class SortsTests {
     public void testEventBubbleSort() {
         testSortEvent(Sorts::bubbleSort, Sorts::eventSort);
     }
+    
+    @Test
+    public void testEventInsertionSort() {
+        testSortEvent(Sorts::insertionSort, Sorts::eventSort);
+    }
+    
+    @Test
+    public void testEventSelectionSort() {
+        testSortEvent(Sorts::selectionSort, Sorts::eventSort);
+    }
+    
+    @Test
+    public void testEventMergeSort() {
+        testSortEvent(Sorts::mergeSort, Sorts::eventSort);
+    }
+    
+    @Test
+    public void testEventQuickSort() {
+        testSortEvent(Sorts::quickSort, Sorts::eventSort);
+    }
 
+    @Test
+    public void testEventCombSort() {
+        testSortEvent(Sorts::combSort, Sorts::eventSort);
+    }
+  
 }
