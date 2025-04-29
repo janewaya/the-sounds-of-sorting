@@ -10,14 +10,17 @@ import java.util.List;
  * in the program.
  */
 public class NoteIndices {
-    Integer[] arr;
-    Boolean[] highlights;
+    public Integer[] arr;
+    public Boolean[] highlights;
     /**
      * @param n the size of the scale object that these indices map into
      */
     public NoteIndices(int n) {
-        Integer[] arr = new Integer[n];
-        Boolean[] highlights = new Boolean[n];
+        this.arr = new Integer[n];
+        this.highlights = new Boolean[n];
+        for(int i = 0; i < n; i++){
+            this.highlights[i] = false;
+        }
     }
     
     /**
@@ -28,11 +31,15 @@ public class NoteIndices {
      */
     public void initializeAndShuffle(int n) {
         List<Integer> lst = new ArrayList<Integer>();
+        this.highlights = new Boolean[n];
         for(int i = 0; i < n; i++){
             lst.add(i);
         }
         Collections.shuffle(lst);
-        arr = lst.toArray(arr);
+        this.arr = lst.toArray(this.arr);
+        for(int i = 0; i < n; i++){
+            this.highlights[i] = false;
+        }
     }
     
     /** @return the indices of this NoteIndices object */
@@ -45,7 +52,7 @@ public class NoteIndices {
      * @param index the index to highlight
      */
     public void highlightNote(int index) {
-        highlights[index] = true;
+        this.highlights[index] = true;
     }
     
     /**
@@ -53,13 +60,13 @@ public class NoteIndices {
      * @return true if the given index is highlighted
      */
     public boolean isHighlighted(int index) {
-        return highlights[index];
+        return this.highlights[index];
     }
     
     /** Clears all highlighted indices from this collection */
     public void clearAllHighlighted() {
-        for(int i = 0; i < highlights.length; i++){
-            highlights[i] = false;
+        for(int i = 0; i < this.highlights.length; i++){
+            this.highlights[i] = false;
         }
     }
 }

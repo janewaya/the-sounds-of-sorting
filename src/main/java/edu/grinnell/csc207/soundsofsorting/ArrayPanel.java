@@ -1,4 +1,5 @@
 package edu.grinnell.csc207.soundsofsorting;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import static java.lang.Math.floor;
@@ -30,10 +31,22 @@ public class ArrayPanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
+        g.clearRect(0, 0, width, height);
         int spacing = 0;
         for(int i = 0; i < this.notes.arr.length; i++){
-            g.fillRect(0, spacing, (int) floor(this.width / this.notes.arr.length), 
-                    (int) floor(this.height / this.notes.arr.length) * (1 + notes.arr[i]));
+            Color lastColor = g.getColor();
+            g.setColor(Color.BLACK);
+            g.drawRect(spacing, (int) floor(this.height / this.notes.arr.length) * (1 + notes.arr[i]),
+                       (int) floor(this.width / this.notes.arr.length), this.height);
+            if(lastColor.equals(Color.BLUE)){
+                g.setColor(Color.GREEN);
+            } else if(lastColor.equals(Color.GREEN)){
+                g.setColor(Color.CYAN);
+            } else{
+                g.setColor(Color.BLUE);
+            }
+            g.fillRect(spacing, (int) floor(this.height / this.notes.arr.length) * (1 + notes.arr[i]),
+                       (int) floor(this.width / this.notes.arr.length), this.height);
             spacing += (int) floor(this.width / this.notes.arr.length);
         }
     }
