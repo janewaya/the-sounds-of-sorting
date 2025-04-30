@@ -6,28 +6,28 @@ import java.util.List;
 /**
  * A <code>CopyEvent</code> logs a copy of a value into an index of the array.
  */
-public class CopyEvent<T> implements SortEvent<T>{
-    
+public class CopyEvent<T> implements SortEvent<T> {
+
     private T value;
     private int destination;
-    
-    public CopyEvent(T value, int destination){
+
+    public CopyEvent(T value, int destination) {
         this.value = value;
         this.destination = destination;
     }
-    
+
     @Override
-    public void apply(T[] arr){
+    public void apply(T[] arr) {
         arr[this.destination] = this.value;
     }
-    
-    public List<Integer> getAffectedIndices(){
+
+    public List<Integer> getAffectedIndices() {
         ArrayList<Integer> lst = new ArrayList<Integer>();
         lst.add(this.destination);
         return lst;
     }
-    
-    public boolean isEmphasized(){
+
+    public boolean isEmphasized() {
         return true;
     }
 }

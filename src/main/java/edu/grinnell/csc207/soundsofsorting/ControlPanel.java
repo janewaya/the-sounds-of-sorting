@@ -195,10 +195,10 @@ public class ControlPanel extends JPanel {
                             int i = 0;
                             while (i != ais.size()) {
                                 int j = ais.get(i);
-                                if(j != notes.getNotes().length){
-                                int k = tmp[j];
-                                scale.playNote(k, notes.isHighlighted(j));
-                                notes.highlightNote(j);
+                                if (j != notes.getNotes().length) {
+                                    int k = tmp[j];
+                                    scale.playNote(k, notes.isHighlighted(j));
+                                    notes.highlightNote(j);
                                 }
                                 i++;
                             }
