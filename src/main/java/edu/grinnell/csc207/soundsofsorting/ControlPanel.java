@@ -13,16 +13,11 @@ import javax.swing.JPanel;
 
 import edu.grinnell.csc207.soundsofsorting.sortevents.SortEvent;
 import edu.grinnell.csc207.soundsofsorting.sorts.Sorts;
-import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.bubbleSort;
-import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.insertionSort;
-import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.mergeSort;
-import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.quickSort;
-import static edu.grinnell.csc207.soundsofsorting.sorts.Sorts.selectionSort;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
- * The Control Panel houses the GUI for interacting with the Sounds of
- * Sorting application.
+ * The Control Panel houses the GUI for interacting with the Sounds of Sorting
+ * application.
  */
 public class ControlPanel extends JPanel {
 
@@ -156,19 +151,24 @@ public class ControlPanel extends JPanel {
                 // 1. Create the sorting events list
                 // 2. Add in the compare events to the end of the list
                 List<Integer> lsti;
-                String selectedSort = sorts.getItemAt(0);
-                Integer[] notesTmp = notes.getNotes();
+                String selectedSort = (String) sorts.getSelectedItem();
+                Integer[] notesTmp = new Integer[notes.getNotes().length];
+                for (int i = 0; i < notesTmp.length; i++) {
+                    notesTmp[i] = notes.getNotes()[i];
+                }
 
                 List<SortEvent<Integer>> lst = generateEvents(selectedSort, notesTmp);
                 for (int i = 0; i < lst.size(); i++) {
-                    lsti = lst.get(i).getAffectedIndices();
-                    CompareEvent temp = new CompareEvent(lsti.get(0), lsti.get(1));
-                    if (lst.get(i).equals(temp)) {
-                        lst.add(lst.get(i));
-                        lst.remove(i);
+                    if (lst.get(i) instanceof CompareEvent) {
+                        lsti = lst.get(i).getAffectedIndices();
+                        CompareEvent temp = new CompareEvent(lsti.get(0), lsti.get(1));
+                        if (lst.get(i).equals(temp)) {
+                            lst.add(lst.get(i));
+                            lst.remove(i);
+                        }
                     }
                 }
-                
+
                 List<SortEvent<Integer>> events = lst;
 
                 // NOTE: The Timer class repetitively invokes a method at a
@@ -191,17 +191,19 @@ public class ControlPanel extends JPanel {
                             //    affected indices logged in the event.
                             Integer[] tmp = notes.getNotes();
                             List<Integer> ais = e.getAffectedIndices();
-                            
+
                             int i = 0;
                             while (i != ais.size()) {
                                 int j = ais.get(i);
+                                if(j != notes.getNotes().length){
                                 int k = tmp[j];
                                 scale.playNote(k, notes.isHighlighted(j));
                                 notes.highlightNote(j);
+                                }
                                 i++;
                             }
                             // 4. Highlight those affected indices.
-                            
+
                             panel.repaint();
                         } else {
                             this.cancel();

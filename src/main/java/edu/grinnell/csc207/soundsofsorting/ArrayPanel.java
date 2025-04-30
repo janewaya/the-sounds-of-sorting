@@ -34,9 +34,11 @@ public class ArrayPanel extends JPanel {
         g.clearRect(0, 0, width, height);
         int spacing = 0;
         for(int i = 0; i < this.notes.arr.length; i++){
+            int tmp = (int) floor(this.height / this.notes.arr.length) * (1 + notes.arr[i]);
+            int properHeight = this.height - tmp;
             Color lastColor = g.getColor();
             g.setColor(Color.BLACK);
-            g.drawRect(spacing, (int) floor(this.height / this.notes.arr.length) * (1 + notes.arr[i]),
+            g.drawRect(spacing, properHeight,
                        (int) floor(this.width / this.notes.arr.length), this.height);
             if(lastColor.equals(Color.BLUE)){
                 g.setColor(Color.GREEN);
@@ -45,7 +47,7 @@ public class ArrayPanel extends JPanel {
             } else{
                 g.setColor(Color.BLUE);
             }
-            g.fillRect(spacing, (int) floor(this.height / this.notes.arr.length) * (1 + notes.arr[i]),
+            g.fillRect(spacing, properHeight,
                        (int) floor(this.width / this.notes.arr.length), this.height);
             spacing += (int) floor(this.width / this.notes.arr.length);
         }
