@@ -11,14 +11,21 @@ public class SwapEvent<T> implements SortEvent<T> {
     private int firstindex;
     private int secondindex;
 
+    /**
+     * Creates a SwapEvent
+     *
+     * @param firstindex the first index swapped
+     * @param secondindex the second index swapped
+     */
     public SwapEvent(int firstindex, int secondindex) {
         this.firstindex = firstindex;
         this.secondindex = secondindex;
     }
 
     /**
+     * Applies a SwapEvent
      *
-     * @param arr
+     * @param arr the array the event is applied to
      */
     @Override
     public void apply(T[] arr) {
@@ -27,6 +34,12 @@ public class SwapEvent<T> implements SortEvent<T> {
         arr[this.secondindex] = temp;
     }
 
+    /**
+     * Gets the compared indices
+     *
+     * @return a list of the compared indices
+     */
+    @Override
     public List<Integer> getAffectedIndices() {
         ArrayList<Integer> lst = new ArrayList<Integer>();
         lst.add(this.firstindex);
@@ -34,6 +47,12 @@ public class SwapEvent<T> implements SortEvent<T> {
         return lst;
     }
 
+    /**
+     * Tells if a SwapEvent is Emphasized
+     *
+     * @return true
+     */
+    @Override
     public boolean isEmphasized() {
         return true;
     }
